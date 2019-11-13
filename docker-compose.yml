@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: ./docker/contents_web      # Dockerfile保存場所
+      dockerfile: Dockerfile    # Dockerfileファイル名
+    image: nn-web      # docker image name
+    container_name: nn-web       # docker container name
+    ports:
+      - 80:80
+
+  app:
+    build:
+      context: ./docker/contents_app      # Dockerfile保存場所
+      dockerfile: Dockerfile    # Dockerfileファイル名
+    image: nn-app                  # イメージ名
+    container_name: nn-app         # コンテナ名
+    ports:                          # ポート接続
+      - 3000:3000
+    volumes:                        # mount workdir
+      - ./myapp:/src
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql57
+    hostname: mysql
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    volumes:
+      - ./db-data/mysql_data:/var/lib/mysql
+      - ./db-data:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    environment:
+      - "MYSQL_ROOT_PASSWORD=root"
+      - "MYSQL_DATABASE=sample"
+volumes:
+  db-data:
