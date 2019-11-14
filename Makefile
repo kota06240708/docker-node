@@ -7,8 +7,8 @@ start:
 
 # コンテナを起動 (コンソールにデバックを表示させる)
 .PHONY: start-d
-start:
-	docker-compose -p $(PROJECT) up  -d --build
+start-d:
+	docker-compose -p $(PROJECT) up  --build
 
 # ログを表示
 .PHONY: logs

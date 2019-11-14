@@ -1,5 +1,5 @@
 # ベースイメージを指定
-FROM node:10.12
+FROM node:10.16
 
 # 環境変数設定
 ENV NODE_ENV="development"
