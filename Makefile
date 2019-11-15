@@ -39,3 +39,17 @@ on-db:
 .PHONY: on-node
 on-node:
 	docker exec -i -t nn-app bash
+
+# コンテナ、イメージを削除
+.PHONY: clean
+clean:
+	@if [ "$(image)" != "" ] ; then \
+			docker rmi -f $(image); \
+	fi
+	@if [ "$(contener)" != "" ] ; then \
+			docker rm -f $(contener); \
+	fi
+
+# コンテナをリスタート
+.PHONY: restart
+restart: kill start-d
