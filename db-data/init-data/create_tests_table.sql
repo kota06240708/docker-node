@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS `node_sample`.`users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(30) NOT NULL COMMENT '名前',
+  `age` INT(3) NOT NULL COMMENT '年齢',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC

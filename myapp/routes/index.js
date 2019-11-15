@@ -8,7 +8,7 @@ var opt = {
   port: 3306,
   user: 'root',
   password: 'root',
-  database: 'sample'
+  database: 'node_sample'
 }
 
 /* GET home page. */
@@ -25,6 +25,18 @@ router.get('/', function (req, res, next) {
 
     console.error('成功だよー')
   })
+
+  connection.query(
+    'insert into users set ?',
+    { name: 'kota', age: 30 },
+    function (error, results, fields) {
+      if (error) {
+        console.log('しっぱいし')
+      }
+
+      console.log(results)
+    }
+  )
 
   connection.end()
 
